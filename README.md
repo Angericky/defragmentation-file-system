@@ -1,8 +1,8 @@
 # OSlab Project 5 - Defragmentation
 
-  Authorize by 赵菁菁  
-  Stu_ID: 10152130149
-  Date: 2017.12.30
+  Authorize by 赵菁菁<br>
+  Stu_ID: 10152130149<br>
+  Date: 2017.12.30<br>
 
 ## Overview
   This assignment acquires us to write a file defragmentation code file. We should read the given disk file, then defragment the file system embedded in it. 
@@ -30,8 +30,11 @@ My defragmenting process in this part:
 
 I maintain two global variables -- cur_pos & data_blk_sz.<br>
 The former refers to the smallest number of free blocks in data region at present, and the latter refers to the number of data blocks  left to be read in the current file.<br>
+I call DFS function to implement defragmentation. 
 
-  * go through the file's datablocks sequently by DFS algorithm(sorted from lowest to highest to help prevent future fragmentation) 
+    DFS function: find the smallest free block number(sorted from lowest to highest to help prevent future fragmentation)  and write the block data
+    
+  * go through the file's datablocks sequently 
   * reallocate datablock numbers, update block_num values in the inode
   * write inode and data block to outfile 
 
@@ -54,6 +57,11 @@ inode
   Using the same code, the disk after my defragmentation can also be extracted the same 17 files.
   
 ## what's more
+1. I call 'fout_name' function to add "-defrag" to the filename before its suffix*/
+    * find the suffix position of the filename.
+        1.If the file has a suffix, according to where the '.' occurs, find the suffix position
+        2.If it doesn't, the position refers to the position after the last char data.
+    * Then add str "-defrag" to the filename.
 2. I find the swap_offset in superblock is 10243, which means the file system has overall 10243 blocks and the size is 10243 * 512 = 5,244,416 bytes.  
     But the original datafile has only 5,243,392 bytes, which is 10241 blocks.  
     So the original file loses 2 blocks, and my output file is 1024 bytes larger. 
