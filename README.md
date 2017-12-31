@@ -14,6 +14,7 @@ The disk is divided into a series of blocks.
 On disk, the first block contain the bootblock. 
 The second block contain the superblock, which includes a lot of information about inodes.
 The inodes region begins at (inode_offset + 2) block, and the number of inode is  (data_offset - inode_offset) * blocksize / sizeof(inode).
+The data region starts at (data_offset + 2) block, contains different file data of inodes.
 
 The overall on-disk organization of the data structures of the file system is as follows:
 > bootblock |  superblock  | null |  inode | inode | inode | inode | null | data region | ... |
