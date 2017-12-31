@@ -13,7 +13,8 @@ Two data structures are important in this homework -- superblock and inode.
 The disk is divided into blocks.
 On disk, the first block contain the bootblock. 
 The second block contain the superblock, which includes a lot of information about inodes.
-The inodes 
+The inodes region at inode_offset number block
+
 
 The overall on-disk organization of the data structures of the file system is as follows:
 > bootblock |  superblock  | null |  inode | inode | inode | inode | null | data region | ... |
@@ -24,7 +25,12 @@ is simple: a series of blocks, each of size 4 KB. The blocks are addressed from 
 
 
 ## how to implement the defragmentation
+After defragmenting, your new disk image should contain:
 
+the same boot block (just copy it),
+a new superblock with the same list of free inodes but a new list of free blocks (sorted from lowest to highest to help prevent future fragmentation),
+new inodes for the files,
+data blocks at their new locations.
 
 ## test accuracy
 For each inode, I went through blocks of its data region to extract every file.
