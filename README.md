@@ -27,12 +27,13 @@ My defragmenting process in this part:
 2. Read the original superblock and inodes. 
 
 3. data blocks at their new locations.<br>
-I maintain 2 global variables -- cur_pos & data_blk_sz.<br>
+
+I maintain two global variables -- cur_pos & data_blk_sz.<br>
 The former refers to the smallest number of free blocks in data region at present, and the latter refers to the number of data blocks  left to be read in the current file.<br>
 
-* go through the file's datablocks sequently by DFS algorithm(sorted from lowest to highest to help prevent future fragmentation) 
-* reallocate datablock numbers, update block_num values in the inode
-* write inode and data block to outfile 
+  * go through the file's datablocks sequently by DFS algorithm(sorted from lowest to highest to help prevent future fragmentation) 
+  * reallocate datablock numbers, update block_num values in the inode
+  * write inode and data block to outfile 
 
 4. update the superblock and inodes
 Update the value of 'free_iblock' in superblock and write it.(Use fseek() to location the superblock position in output file.)
