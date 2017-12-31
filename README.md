@@ -32,10 +32,10 @@ a new superblock with the same list of free inodes but a new list of free blocks
 new inodes for the files,
 data blocks at their new locations.
 
-## test accuracy
-For each inode, I went through blocks of its data region to extract every file.
-I wrote extracting file code in 'extract.c'. 
-There are three files whose nlink is 0, which means they are unused. So only the left 17 files are extracted.
+## test correctness 
+    For each inode, I went through blocks of its data region to extract every file.
+    I wrote extracting file code in 'extract.c'. 
+    There are three files whose nlink is 0, which means they are unused. So only the left 17 files are extracted.
 
 
 ## what's more
