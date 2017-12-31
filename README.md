@@ -58,10 +58,11 @@ inode
   
 ## what's more
 1. I call 'fout_name' function to add "-defrag" to the filename before its suffix*/
-    * find the suffix position of the filename.
+    * Find the suffix position of the filename.
         1.If the file has a suffix, according to where the '.' occurs, find the suffix position
         2.If it doesn't, the position refers to the position after the last char data.
     * Then add str "-defrag" to the filename.
-2. I find the swap_offset in superblock is 10243, which means the file system has overall 10243 blocks and the size is 10243 * 512 = 5,244,416 bytes.  
-    But the original datafile has only 5,243,392 bytes, which is 10241 blocks.  
-    So the original file loses 2 blocks, and my output file is 1024 bytes larger. 
+2. The swap_offset in superblock doesn't match file size.
+    * I find the swap_offset in superblock is 10243, which means the file system has overall 10243 blocks and the size is 10243 * 512 = 5,244,416 bytes.  
+    * But the original datafile has only 5,243,392 bytes, which is 10241 blocks.  
+    * So the original file loses 2 blocks, and my output file is 1024 bytes larger. 
