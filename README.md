@@ -33,4 +33,6 @@ There are three files whose nlink is 0, which means they are unused. So only the
 
 
 ## what's more
-1. I find the swap_offset in superblock is 10243, which means the file system has overall 10243 blocks and the size is 10243 * 512 = 5,244,416 bytes. But the original datafile has only 5,243,392 bytes, which is 10241 blocks. So the original file loses 2 blocks, and my output file is 1024 bytes larger. 
+1. I find the swap_offset in superblock is 10243, which means the file system has overall 10243 blocks and the size is 10243 * 512 = 5,244,416 bytes. 
+But the original datafile has only 5,243,392 bytes, which is 10241 blocks. 
+So the original file loses 2 blocks, and my output file is 1024 bytes larger. 
