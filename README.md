@@ -29,20 +29,21 @@ My defragmenting process in this part:
 3. data blocks at their new locations.
 I maintain 2 global variables -- cur_pos & data_blk_sz.<br>
 The former refers to the smallest number of free blocks in data region at present, and the latter refers to the number of data blocks  left to be read in the current file.<br>
-    * go through the file's datablocks sequently by DFS algorithm(sorted from lowest to highest to help prevent future fragmentation) 
-    * reallocate datablock numbers, update block_num values in the inode
-    * write inode and data block to outfile 
+
+* go through the file's datablocks sequently by DFS algorithm(sorted from lowest to highest to help prevent future fragmentation) 
+* reallocate datablock numbers, update block_num values in the inode
+* write inode and data block to outfile 
 
 4. update the superblock and inodes
 Update the value of 'free_iblock' in superblock and write it.(Use fseek() to location the superblock position in output file.)
 inode
 
 ## test correctness 
-For each inode, I went through blocks of its data region to extract every file.<br>
-I wrote extracting file code in 'extract.c'. <br>
-There are three files whose nlink is 0, which means they are unused. So only the left 17 files are extracted.
+    For each inode, I went through blocks of its data region to extract every file.<br>
+    I wrote extracting file code in 'extract.c'. <br>
+    There are three files whose nlink is 0, which means they are unused. So only the left 17 files are extracted.
   
-The types and sizes of files are:<br>
+    The types and sizes of files are:<br>
     1  94.2kB  Document      2  182.3kB image       3 42.5kB Program
     4  512B    Binary        5  11.3kB  Text        6 17.4kB Program
     7  2.6kB   Binary        8  15.4kB  Unknown     9 22.0kB Text
