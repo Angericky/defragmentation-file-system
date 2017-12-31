@@ -35,7 +35,7 @@ data blocks at their new locations.
 ## test correctness 
     For each inode, I went through blocks of its data region to extract every file.
     I wrote extracting file code in 'extract.c'. 
-    There are three files whose nlink is 0, which means they are unused. So only the left 17 files are extracted.
+  There are three files whose nlink is 0, which means they are unused. So only the left 17 files are extracted.
 
 
 ## what's more
