@@ -15,24 +15,29 @@ On disk, the first block contain the bootblock.
 The second block contain the superblock, which includes a lot of information about inodes.
 The inodes region at inode_offset number block
 
-
 The overall on-disk organization of the data structures of the file system is as follows:
 > bootblock |  superblock  | null |  inode | inode | inode | inode | null | data region | ... |
 
-
-
 ## how to implement the defragmentation
-After defragmenting, your new disk image should contain:
+My defragmenting process in this part:
 
-the same boot block (just copy it),
-a new superblock with the same list of free inodes but a new list of free blocks (sorted from lowest to highest to help prevent future fragmentation),
-new inodes for the files,
-data blocks at their new locations.
+1. Read and copy the same boot block.
+
+2. Read the original superblock.
+a new superblock with the same list of free inodes 
+
+3. data blocks at their new locations.
+    * find the file's datablocks and read them one by one
+    * reallocate datablock numbers and write data to outfile 
+    value of free blocks (sorted from lowest to highest to help prevent future fragmentation) 
+    
+4. update the superblock and inodes
+build the new in
 
 ## test correctness 
-    For each inode, I went through blocks of its data region to extract every file.
-    I wrote extracting file code in 'extract.c'. 
-  There are three files whose nlink is 0, which means they are unused. So only the left 17 files are extracted.
+  For each inode, I went through blocks of its data region to extract every file.<br>
+  I wrote extracting file code in 'extract.c'. <br>
+  There are three files whose nlink is 0, which means they are unused. So only the left 17 files are extracted.<br>
 
 
 ## what's more
